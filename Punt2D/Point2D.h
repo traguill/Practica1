@@ -1,83 +1,39 @@
 #ifndef __Point2D_H__
 #define __Point2D_H__
 
+
 class Point2D
 {
 public:
 	
-	//--------------------------------------------------
-	//Atributs
-	//--------------------------------------------------
+
+	//Attributes
+
 	float x, y;
 
-	//--------------------------------------------------
-	//Metodes
-	//--------------------------------------------------
-	bool IsZero() const
-	{
-		return x == 0 && y == 0;
-	}
 	
-	void SetZero()
-	{
-		x = y = 0.0f;
-	}
+	//Methods
+	
+	bool IsZero() const;
+	
+	void SetZero();
 
-	Point2D DistanceTo(const Point2D p) const
-	{
-		Point2D tmp;
-		tmp.x = p.x - x;
-		tmp.y = p.y - y;
+	float DistanceTo(const Point2D p) const;
 
-		return tmp;
-	}
+	
+	//Operators
+	
+	Point2D operator+ (const Point2D p) const;
 
-	//--------------------------------------------------
-	//Operadors
-	//--------------------------------------------------
-	Point2D operator+ (const Point2D p) const
-	{
-		Point2D tmp;
-		tmp.x = x + p.x;
-		tmp.y = y + p.y;
+	Point2D operator- (const Point2D& p)const;
 
-		return tmp;
-	}
+	Point2D operator+= (const Point2D& p);
 
-	Point2D operator- (const Point2D& p)const
-	{
-		Point2D tmp;
-		tmp.x = x - p.x;
-		tmp.y = y - p.y;
+	Point2D operator-= (const Point2D& p);
 
-		return tmp;
-	}
-	Point2D operator+= (const Point2D& p)
-	{
-		x += p.x;
-		y += p.y;
+	bool operator== (const Point2D& p) const;
 
-		return *this;
-	}
-
-	Point2D operator-= (const Point2D& p)
-	{
-		x -= p.x;
-		y -= p.y;
-
-		return *this;
-	}
-
-	bool operator== (const Point2D& p) const
-	{
-		return x == p.x && y == p.y;
-	}
-
-	bool operator!=(const Point2D& p) const
-	{
-		return x != p.x || y != p.y;
-	}
-
+	bool operator!=(const Point2D& p) const;
 
 };
 #endif
