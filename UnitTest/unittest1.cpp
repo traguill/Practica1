@@ -233,14 +233,11 @@ namespace UnitTest
 
 		TEST_METHOD(OperatorSumEqualChar)
 		{
-			char* c = "bro";
-			String s;
-			String s2("hey");
+			char* c = "hola";
+			String s("s");
 
 			s += c;
-			s2 += c;
-
-			Assert::IsTrue(strcmp(s2.GetString(), "heybro") == 0);
+			Assert::IsTrue(strcmp(s.GetString(), "shola") == 0);
 		}
 
 		TEST_METHOD(OperatorSumEqualString)

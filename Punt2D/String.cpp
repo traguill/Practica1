@@ -128,13 +128,12 @@
 		if (c != NULL)
 		{
 			
-				char *tmp = new char[sizeMemory];
+				char* tmp = strng;
 				strcpy_s(tmp, sizeMemory, strng);
-				delete[] strng;
 
 				sizeMemory = Length() + strlen(c) + 1;
 				NewString(sizeMemory);
-				strcpy_s(strng, sizeMemory, tmp);
+				strcpy_s(strng, strlen(tmp)+1 , tmp);
 				delete[] tmp;
 
 			
@@ -149,7 +148,6 @@
 		{
 			char *tmp = new char[sizeMemory];
 			strcpy_s(tmp, sizeMemory, strng);
-			delete[] strng;
 
 			sizeMemory = Length() + s.Length() + 1;
 			NewString(sizeMemory);
