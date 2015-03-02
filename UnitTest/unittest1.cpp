@@ -2,13 +2,15 @@
 #include "CppUnitTest.h"
 #include "../Punt2D/Point2D.h"
 #include "../Punt2D/Point2D.cpp"
+#include "../Punt2D/String.h"
+#include "../Punt2D/String.cpp"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
 {		
-	TEST_CLASS(Point2DT)
+	TEST_CLASS(Point2DTest)
 	{
 	public:
 		
@@ -147,6 +149,137 @@ namespace UnitTest
 
 		}
 
+
+	};
+
+	TEST_CLASS(StringTest)
+	{
+	public:
+
+		//Constructors
+
+		TEST_METHOD(EmptyConst)
+		{
+			String s;
+			
+			Assert::IsTrue(s.Capacity() == 1);
+		}
+
+		TEST_METHOD(CharCConst)
+		{
+			char* c = "hola";
+			String s(c);
+
+			Assert::IsTrue(s.Capacity() == 5 && s.Length() == 4 && strcmp(c, s.GetString()) == 0 );
+		}
+
+		TEST_METHOD(StringConst)
+		{
+			String s("hola");
+			String s2(s);
+
+			Assert::IsTrue(s.Capacity() == 5 && s.Length() == 4 && strcmp(s2.GetString(), s.GetString()) == 0);
+		}
+		TEST_METHOD(OperatorEqualEqualChar)
+		{
+			char* c = "hola";
+			String s(c);
+
+			Assert::IsTrue(s==c);
+		}
+		TEST_METHOD(OperatorEqualEqualString)
+		{
+			String s("hola");
+			String s2("hola");
+
+			Assert::IsTrue(s == s2);
+		}
+		TEST_METHOD(OperatorNotEqualChar)
+		{
+			char* c = "hola";
+			String s("bye");
+
+			Assert::IsTrue(s != c);
+		}
+		TEST_METHOD(OperatorNotEqualString)
+		{
+			String s("hola");
+			String s2("bye");
+
+			Assert::IsTrue(s != s2);
+		}
+		TEST_METHOD(OperatorEqualChar)
+		{
+			char* c = "hola";
+			String s("bye");
+			String s2;
+
+			s = c;
+			s2 = c;
+
+			Assert::IsTrue(s == c && s2 == c);
+		}
+		TEST_METHOD(OperatorEqualString)
+		{
+			String r("hola");
+			String s("bye");
+			String s2;
+
+			s = r;
+			s2 = r;
+
+			Assert::IsTrue(s == r && s2 == r);
+		}
+
+		TEST_METHOD(OperatorSumEqualChar)
+		{
+			char* c = "bro";
+			String s;
+			String s2("hey");
+
+			s += c;
+			s2 += c;
+
+			Assert::IsTrue(strcmp(s2.GetString(), "heybro") == 0);
+		}
+
+		TEST_METHOD(OperatorSumEqualString)
+		{
+			
+			String s("hey");
+			String s2("bro");
+
+			s += s2;
+
+			Assert::IsTrue(strcmp(s.GetString(), "heybro") == 0);
+		}
+
+		TEST_METHOD(Lenght)
+		{
+			String s("hola");
+
+			Assert::IsTrue(s.Length() == 4);
+		}
+
+		TEST_METHOD(Capacity)
+		{
+			String s("hola");
+
+			Assert::IsTrue(s.Capacity() == 5);
+		}
+		TEST_METHOD(GetString)
+		{
+			String s("hola");
+
+			Assert::IsTrue(strcmp(s.GetString(), "hola") == 0);
+		}
+
+		TEST_METHOD(Clear)
+		{
+			String s("hola");
+			s.Clear();
+			Assert::IsTrue(s.Capacity() == 1);
+		}
 
 	};
 }
