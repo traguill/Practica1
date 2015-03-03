@@ -71,7 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Point2DTemplate.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Template.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt" />

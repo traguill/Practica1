@@ -4,6 +4,7 @@
 #include "../Punt2D/Point2D.cpp"
 #include "../Punt2D/String.h"
 #include "../Punt2D/String.cpp"
+#include "../Punt2D/Point2DTemplate.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -278,5 +279,18 @@ namespace UnitTest
 			Assert::IsTrue(s.Capacity() == 1);
 		}
 
+	};
+
+	TEST_CLASS(PointTemplate){
+	public:
+		TEST_METHOD(PointInt)
+		{
+			Point2DTemplate<int> a, b;
+
+			a.x = a.y = 5;
+			b.SetZero();
+
+			Assert::IsTrue(a != b);
+		}
 	};
 }
