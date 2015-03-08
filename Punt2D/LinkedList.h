@@ -12,6 +12,18 @@ struct  node{
 class SList{
 	node* start;
 
+	unsigned int Count() const{
+
+		node* tmp = start;
+		int counter = 0;
+		while (tmp != NULL)
+		{
+			tmp = tmp->next;
+			counter++;
+		}
+		return counter;
+	};
+
 	void Add(int valor){
 
 		node* tmp = start;
@@ -25,6 +37,20 @@ class SList{
 
 		tmp->next = last;
 
+	};
+
+	void Delete(int valor){
+
+		node* tmp = start;
+		node* beforeTmp;
+
+		while (tmp->value != valor)
+		{
+			beforeTmp = tmp;
+			tmp = tmp->next;
+		}
+		beforeTmp->next = tmp->next;
+		delete[] tmp;
 	};
 };
 
