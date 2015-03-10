@@ -42,7 +42,7 @@ public:
 
 	unsigned int Capacity()const;
 
-	char* GetString() const;
+	const char* GetString();
 
 	void Clear();
 	

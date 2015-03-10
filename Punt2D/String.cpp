@@ -172,7 +172,7 @@
 			return sizeMemory;
 		}
 
-	char* String::GetString() const{
+	const char* String::GetString(){
 			return strng;
 		}
 
@@ -182,3 +182,4 @@
 			strng = new char[sizeMemory];
 			strng[0] = '\0';
 		}
+	

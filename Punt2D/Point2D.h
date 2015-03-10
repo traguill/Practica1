@@ -8,7 +8,7 @@ public:
 	
 
 	//Attributes
-	.
+	
 	float x, y;
 
 	
