@@ -60,16 +60,15 @@ class SList2Pointers{
 				node* tmp = start;
 				while (tmp && tmp->next != deletedNode)
 				{
+
 					tmp = tmp->next;
+					if (tmp == NULL)
+						return false;
 				}
-				if (tmp)
-				{
-					tmp->next = deletedNode->next;
-				}
-				else
-				{
-					return false;
-				}
+				tmp->next = deletedNode->next;
+				node* tmp2 = deletedNode->next;
+				tmp2->before = tmp;
+				
 			}
 			else
 			{
@@ -80,7 +79,9 @@ class SList2Pointers{
 			delete deletedNode;
 			return true;
 		}
-		return false;
+		else{
+			return false;
+		}
 	};
 
 	void  DeleteAll()
