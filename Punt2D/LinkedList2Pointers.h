@@ -1,5 +1,5 @@
-#ifndef __LINKEDLIST_H__
-#define __LINKEDLIST_H__
+#ifndef __LINKEDLIST2POINTERS_H__
+#define __LINKEDLIST2POINTERS_H__
 
 #include <stdio.h>
 
@@ -8,10 +8,11 @@ template <class Type>
 struct  node{
 	Type value;
 	node* next;
+	node* before;
 };
 
 template <class Type>
-class SList{
+class SList2Pointers{
 	node* start;
 
 	unsigned Type Count() const{
@@ -29,11 +30,20 @@ class SList{
 	void Add(Type valor){
 
 		node* tmp = start;
-		if (start != NULL)
-		while (tmp->next != NULL){
-			tmp = tmp->next;
-		}
 		node* last = new node;
+
+		if (start != NULL)
+		{
+			while (tmp->next != NULL){
+				tmp = tmp->next;
+			}
+			last->before = tmp;
+		}
+		else
+		{
+			last->before = NULL;
+		}
+
 		last->next = NULL;
 		last->value = valor;
 
@@ -63,7 +73,9 @@ class SList{
 			}
 			else
 			{
-				start = start->next;
+				node* tmp = start->next;
+				start = tmp;
+				tmp->before = NULL;
 			}
 			delete deletedNode;
 			return true;
