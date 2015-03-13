@@ -70,12 +70,13 @@
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DynArray.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedList2Pointers.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Point2DTemplate.h" />
     <ClInclude Include="String.h" />
-    <ClInclude Include="Template.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt" />

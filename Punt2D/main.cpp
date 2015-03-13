@@ -1,15 +1,14 @@
-#include "Template.h"
+#include "Utilities.h"
 #include <stdio.h>
 
 int main(int argc, char** args){ 
 
-	int a = 5;
-	int b = 10;
+	float a = 5;
+	int b = 6;
 
-	swap(a, b);
-
-	printf("%d, %d", a, b);
-
+	float c = MIN(a, b);
+	printf("%f", c);
+	
 	getchar();
 
 }
