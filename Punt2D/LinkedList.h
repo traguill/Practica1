@@ -7,16 +7,16 @@
 template <class Type>
 struct  node{
 	Type value;
-	node* next;
+	node<Type>* next;
 };
 
 template <class Type>
 class SList{
-	node* start;
+	node<Type>* start;
 
 	unsigned Type Count() const{
 
-		node* tmp = start;
+		node<Type>* tmp = start;
 		Type counter = 0;
 		while (tmp != NULL)
 		{
@@ -28,12 +28,12 @@ class SList{
 
 	void Add(Type valor){
 
-		node* tmp = start;
+		node<Type>* tmp = start;
 		if (start != NULL)
 		while (tmp->next != NULL){
 			tmp = tmp->next;
 		}
-		node* last = new node;
+		node<Type>* last = new node;
 		last->next = NULL;
 		last->value = valor;
 
@@ -41,13 +41,13 @@ class SList{
 
 	};
 
-	bool  Delete(node* deletedNode)
+	bool  Delete(node<Type>* deletedNode)
 	{
 		if (deletedNode != NULL && start != NULL)
 		{
 			if (deletedNode != start)
 			{
-				node* tmp = start;
+				node<Type>* tmp = start;
 				while (tmp && tmp->next != deletedNode)
 				{
 					tmp = tmp->next;
@@ -73,7 +73,7 @@ class SList{
 
 	void  DeleteAll()
 	{
-		node* tmp;
+		node<Type>* tmp;
 		while (start != NULL)
 		{
 			tmp = start->next;
