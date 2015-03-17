@@ -5,7 +5,7 @@
 #include "../Punt2D/String.h"
 #include "../Punt2D/String.cpp"
 #include "../Punt2D/Point2DTemplate.h"
-#include "../Punt2D/DynArray.h"
+
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -295,15 +295,5 @@ namespace UnitTest
 		}
 	};
 
-	TEST_CLASS(DynArrayT){
-	public:
-		TEST_METHOD(InsertArray)
-		{
-			DynArray arr;
-
-			arr.Insert(10, 2);
-
-			Assert::IsTrue(arr[2] == 10);
-		}
-	};
+	
 }

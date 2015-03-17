@@ -2,6 +2,7 @@
 #define __DYNARRAY_H__
 
 #include <stdio.h>
+#include <assert.h>
 
 class DynArray{
 
@@ -16,27 +17,45 @@ class DynArray{
 
 		~DynArray(){ if (data != NULL) delete[]data; };
 		
+		const int getAllocatedMemory()const{
+			return allocatedMemory;
+		}
 
 		void Reallocate(const unsigned int newMemorySize){
-			if (newMemorySize != NULL)
+
+			if (data != NULL)
 			{
-				if (newMemorySize > allocatedMemory || allocatedMemory == NULL)
-				{
-					allocatedMemory = newMemorySize;
-				}
+				int*tmp = new int[allocatedMemory];
+				CopyArray(tmp, data, allocatedMemory);
+				delete[] data;
+
+				data = new int[newMemorySize];
+				CopyArray(data, tmp, allocatedMemory);
+
+				allocatedMemory = newMemorySize;
+				delete[] tmp;
+			}
+			else
+			{
+				data = new int[newMemorySize];
+				allocatedMemory = newMemorySize;
 			}
 		}
+
 		void PushBack(const int value){
 			if (value != NULL)
 			{
-				if ((numElements + 1) * 4 > allocatedMemory) 
+				if ((numElements + 1) > allocatedMemory) 
 				{
 					//We don't have enought memory space so we create more.
-					Reallocate((numElements + 1) * 4);
+					Reallocate((numElements + 1));
 				}
-				data[numElements + 1] = value;
+				data[numElements] = value;
+				numElements++;
+				allocatedMemory++;
 			}
 		}
+
 		int Pop(){
 			if (numElements != NULL)
 				return data[numElements - 1];
@@ -63,13 +82,23 @@ class DynArray{
 		}
 
 		int& operator[](const unsigned int index){
-			if (index <= numElements - 1){
-				return data[index];
-			}
+			assert(index < numElements);
+			
+			return data[index];
+			
 		}
 		const int& operator[](const unsigned int index) const{
-			if (index <= numElements - 1){
-				return data[index];
+			assert(index < numElements);
+
+			return data[index];
+		}
+
+	private:
+		
+		void CopyArray(int* destination, int* source, int memory){
+			for (int i = 0; i < memory; i++)
+			{
+				destination[i] = source[i];
 			}
 		}
 
