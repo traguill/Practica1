@@ -38,13 +38,13 @@
     <ClInclude Include="LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedList2Pointers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DynArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="List2P.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

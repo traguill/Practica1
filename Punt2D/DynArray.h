@@ -43,7 +43,7 @@ class DynArray{
 		}
 
 		void PushBack(const int value){
-			if (value != NULL)
+			if (data != NULL)
 			{
 				if ((numElements + 1) > allocatedMemory) 
 				{
@@ -52,7 +52,12 @@ class DynArray{
 				}
 				data[numElements] = value;
 				numElements++;
-				allocatedMemory++;
+			}
+			else
+			{
+				data = new int[1];
+				data[0] = value;
+				allocatedMemory = numElements = 1;
 			}
 		}
 
@@ -62,24 +67,27 @@ class DynArray{
 			else
 				return NULL;
 		}
+
 		void Insert(const int value, const unsigned int position){
-			if (value != NULL)
-			{
+			
 				if (position < numElements)
 				{
-					Reallocate(allocatedMemory + 4);
-					for (int i = numElements-1; i >= position; i--)
+					Reallocate(allocatedMemory+1);
+					
+					int pos = position; //Error with the for, we can't use an unsiged int. Provisional solution.
+					for (int i = numElements; i > pos; i--)
 					{	
 						data[i + 1] = data[i];
 					}
 				}
 				else
 				{
-					Reallocate(position * 4);
+					Reallocate(position);
 				}
 				data[position] = value;
-			}
+				numElements++;
 		}
+		
 
 		int& operator[](const unsigned int index){
 			assert(index < numElements);

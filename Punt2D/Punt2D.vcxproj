@@ -72,7 +72,7 @@
   <ItemGroup>
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="LinkedList2Pointers.h" />
+    <ClInclude Include="List2P.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Point2DTemplate.h" />
     <ClInclude Include="String.h" />
