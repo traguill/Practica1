@@ -94,7 +94,7 @@
 		return false;
 	}
 
-	String String::operator=(const char* c){
+	const String String::operator=(const char* c){
 		if (c != NULL)
 		{
 			if (sizeMemory < strlen(c) + 1)
@@ -111,7 +111,7 @@
 
 		return *this;
 	}
-	String String::operator=(const String& s){
+	const String String::operator=(const String& s){
 
 		if (sizeMemory < s.sizeMemory)
 		{
@@ -124,7 +124,7 @@
 		return *this;
 	}
 
-	String String::operator+=(const char* c){
+	const String String::operator+=(const char* c){
 		if (c != NULL)
 		{
 			
@@ -133,7 +133,7 @@
 
 				sizeMemory = Length() + strlen(c) + 1;
 				NewString(sizeMemory);
-				strcpy_s(strng, strlen(tmp)+1 , tmp);
+				strcpy_s(strng, sizeMemory , tmp);
 				delete[] tmp;
 
 			
@@ -143,7 +143,7 @@
 		return *this;
 	}
 
-	String String::operator+=(const String& s){
+	const String String::operator+=(const String& s){
 		if (sizeMemory < Length() + s.Length() + 1)
 		{
 			char *tmp = new char[sizeMemory];

@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include <assert.h>
 
+template <class Type>
 class DynArray{
 
 	private:
-		int* data;
+		Type* data;
 		unsigned int allocatedMemory;
 		unsigned int numElements;
 	public:
@@ -17,98 +18,83 @@ class DynArray{
 
 		~DynArray(){ if (data != NULL) delete[]data; };
 		
-		const int getAllocatedMemory()const{
+		int getAllocatedMemory()const{
 			return allocatedMemory;
 		}
 
-		void Reallocate(const unsigned int newMemorySize){
+		void Reallocate(unsigned int newMemorySize){
 
-			if (data != NULL)
+			Type* tmp = data;
+			allocatedMemory = newMemorySize;
+			data = new Type[allocatedMemory];
+
+			if (tmp != NULL)
 			{
-				int*tmp = new int[allocatedMemory];
-				CopyArray(tmp, data, allocatedMemory);
-				delete[] data;
-
-				data = new int[newMemorySize];
-				CopyArray(data, tmp, allocatedMemory);
-
-				allocatedMemory = newMemorySize;
-				delete[] tmp;
-			}
-			else
-			{
-				data = new int[newMemorySize];
-				allocatedMemory = newMemorySize;
-			}
-		}
-
-		void PushBack(const int value){
-			if (data != NULL)
-			{
-				if ((numElements + 1) > allocatedMemory) 
+				for (int i = 0; i < numElements; i++)
 				{
-					//We don't have enought memory space so we create more.
-					Reallocate((numElements + 1));
+					data[i] = tmp[i];
 				}
-				data[numElements] = value;
-				numElements++;
+			delete[] tmp;
 			}
-			else
-			{
-				data = new int[1];
-				data[0] = value;
-				allocatedMemory = numElements = 1;
-			}
+			 //Maybe we can't delete a null array.
+			
 		}
 
-		int Pop(){
+		void PushBack(const Type value){
+			
+			if (allocatedMemory <= numElements) //We don't have extra memory.
+			{
+				Reallocate(allocatedMemory + 1);
+			}
+			numElements++;
+			data[numElements] = value;
+		}
+
+		bool Pop(){
 			if (numElements != NULL)
-				return data[numElements - 1];
+				return data[--numElements];
 			else
-				return NULL;
+				return false;
 		}
 
-		void Insert(const int value, const unsigned int position){
+		bool Insert(const Type value, const unsigned int position){
 			
-				if (position < numElements)
-				{
-					Reallocate(allocatedMemory+1);
-					
-					int pos = position; //Error with the for, we can't use an unsiged int. Provisional solution.
-					for (int i = numElements; i > pos; i--)
-					{	
-						data[i + 1] = data[i];
-					}
-				}
-				else
-				{
-					Reallocate(position);
-				}
-				data[position] = value;
-				numElements++;
-		}
-		
+			if (position > numElements)
+				return false;
 
-		int& operator[](const unsigned int index){
-			assert(index < numElements);
-			
-			return data[index];
-			
-		}
-		const int& operator[](const unsigned int index) const{
-			assert(index < numElements);
-
-			return data[index];
-		}
-
-	private:
-		
-		void CopyArray(int* destination, int* source, int memory){
-			for (int i = 0; i < memory; i++)
+			if (position == numElements)
 			{
-				destination[i] = source[i];
+				PushBack(value);
+				return true;
 			}
+			
+			if (allocatedMemory <= numElements)
+				Reallocate(allocatedMemory + 1);
+
+			for (unsigned int i = numElements; i > position; i--)
+			{
+				data[i] = data[i - 1];
+			}
+
+			data[position] = value;
+			numElements++;
+			return true;
 		}
+		
+
+		Type& operator[](const unsigned int index){
+			assert(index < numElements);
+			
+			return data[index];
+			
+		}
+		const Type& operator[](const unsigned int index) const{
+			assert(index < numElements);
+
+			return data[index];
+		}
+
+	
 
 };
 

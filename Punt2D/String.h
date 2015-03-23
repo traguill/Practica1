@@ -30,11 +30,11 @@ public:
 	bool operator!=(const char* c) const;
 	bool operator!=(const String& s) const;
 
-	String operator=(const char* c);
-	String operator=(const String& s);
+	const String operator=(const char* c);
+	const String operator=(const String& s);
 
-	String operator+=(const char* c);
-	String operator+=(const String& s);
+	const String operator+=(const char* c);
+	const String operator+=(const String& s);
 
 	//Methods
 

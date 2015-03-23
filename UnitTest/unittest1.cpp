@@ -235,10 +235,10 @@ namespace UnitTest
 
 		TEST_METHOD(OperatorSumEqualChar)
 		{
-			char* c = "hola";
+			
 			String s("s");
 
-			s += c;
+			s += "hola";
 			Assert::IsTrue(strcmp(s.GetString(), "shola") == 0);
 		}
 

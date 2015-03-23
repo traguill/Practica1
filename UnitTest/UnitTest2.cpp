@@ -10,7 +10,7 @@ namespace UnitTest
 public:
 	TEST_METHOD(Reallocate)
 	{
-		DynArray arr;
+		DynArray<int> arr;
 
 		arr.Reallocate(10);
 
@@ -22,7 +22,7 @@ public:
 
 	TEST_METHOD(PushBack)
 	{
-		DynArray arr;
+		DynArray<int> arr;
 
 		for (int i = 0; i < 6; i++)
 		{ 
@@ -31,10 +31,21 @@ public:
 
 		Assert::IsTrue(arr[0] == 0 && arr[1] == 1 && arr[4] == 4 && arr[5] == 5);
 	}
+	TEST_METHOD(Pop)
+	{
+		DynArray<int> arr;
+
+		arr.PushBack(1);
+		arr.PushBack(2);
+
+		arr.Pop();
+
+		Assert::IsTrue(arr.getAllocatedMemory() == 1);
+	}
 
 	TEST_METHOD(Insert)
 	{
-		DynArray arrEmpty, arrBegin, arrFinal, arrMiddle;
+		DynArray<int> arrEmpty, arrBegin, arrFinal, arrMiddle;
 
 		arrEmpty.Insert(1, 3);
 

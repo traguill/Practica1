@@ -32,7 +32,7 @@ public:
 
 	~List2P()
 	{
-		//DeleteAll();
+		DeleteAll();
 	}
 
 	//Methods
