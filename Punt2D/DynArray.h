@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+#define DYN_ARRAY_BLOCK_SIZE 16
+
 template <class Type>
 class DynArray{
 
@@ -13,12 +15,12 @@ class DynArray{
 		unsigned int numElements;
 	public:
 
-		DynArray() :data(NULL), allocatedMemory(0), numElements(0){}
+		DynArray() :data(NULL), allocatedMemory(0), numElements(0){ Reallocate(DYN_ARRAY_BLOCK_SIZE); }
 		DynArray(const unsigned int memSize){ Reallocate(memSize); }
 
 		~DynArray(){ if (data != NULL) delete[]data; };
 		
-		int getAllocatedMemory()const{
+		unsigned int getAllocatedMemory()const{
 			return allocatedMemory;
 		}
 
@@ -36,7 +38,6 @@ class DynArray{
 				}
 			delete[] tmp;
 			}
-			 //Maybe we can't delete a null array.
 			
 		}
 
@@ -44,10 +45,11 @@ class DynArray{
 			
 			if (allocatedMemory <= numElements) //We don't have extra memory.
 			{
-				Reallocate(allocatedMemory + 1);
+				Reallocate(allocatedMemory + DYN_ARRAY_BLOCK_SIZE);
 			}
-			numElements++;
+			
 			data[numElements] = value;
+			numElements++;
 		}
 
 		bool Pop(){
@@ -69,7 +71,7 @@ class DynArray{
 			}
 			
 			if (allocatedMemory <= numElements)
-				Reallocate(allocatedMemory + 1);
+				Reallocate(allocatedMemory + DYN_ARRAY_BLOCK_SIZE);
 
 			for (unsigned int i = numElements; i > position; i--)
 			{
