@@ -32,7 +32,7 @@ class DynArray{
 
 			if (tmp != NULL)
 			{
-				for (int i = 0; i < numElements; i++)
+				for (unsigned int i = 0; i < numElements; i++)
 				{
 					data[i] = tmp[i];
 				}
@@ -54,7 +54,10 @@ class DynArray{
 
 		bool Pop(){
 			if (numElements != NULL)
-				return data[--numElements];
+			{
+				numElements--;
+				return data[numElements];
+			}
 			else
 				return false;
 		}

@@ -106,7 +106,7 @@ public:
 		node<Type>* tmpNext;
 
 		tmp = start;
-		if (tmp != NULL){
+		while (tmp != NULL){
 			tmpNext = tmp->next;
 			delete tmp;
 			tmp = tmpNext;

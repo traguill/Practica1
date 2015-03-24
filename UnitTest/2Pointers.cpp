@@ -38,7 +38,7 @@ namespace UnitTest
 
 			list.Add(4);
 			list.Add(5);
-
+			list.Add(6);
 			list.DeleteAll();
 
 			Assert::IsTrue(list.end == list.start && list.Count() == 0);
