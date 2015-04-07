@@ -75,6 +75,8 @@
     <ClInclude Include="List2P.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Point2DTemplate.h" />
+    <ClInclude Include="Qeue.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
