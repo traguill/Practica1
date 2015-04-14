@@ -2,7 +2,6 @@
 #define __TREEG__H_
 
 #include "List2P.h"
-#include "Stack.h"
 
 template <class Type>
 struct nodeT{
@@ -35,22 +34,23 @@ public:
 			item->parent = NULL;
 		}
 		item->data = data;
+		item->child = NULL;
 
-		rootNode->child.Add(item->data);
+		parent->child.Add(item);
 
-		return item;
+		return *this;
 	}
 
 
-	nodeT<Type>* Add(const Type& _data){
+	nodeT<Type>* Add(const Type& data){
 		nodeT<Type>* item = new nodeT<Type>;
 
-		item->parent = rootNode;
+		item->parent = this;
 		item->data = _data;
 
-		rootNode->child.Add(item->data);
+		this->child = item;
 
-		return item;
+		return *item;
 	}
 
 	void VisitAllNodes(List2P<Type>* list) const{
@@ -61,30 +61,10 @@ public:
 		for (int i = 0; i < item->child.Count(); i++)
 		{
 			if (item->child[i]->data)
-			{
 				list->Add(item->child[i]->data);
-				printf("%s", item->child[i]->data);
-			}
-				
 			else
 				VisitAllNodes(item->child[i]);
 
-		}
-	}
-
-	void InOrder(List2P<Type>* list) const{
-		nodeT<Type>* item = rootNode;
-		Stack<Type> s;
-		for (int i = 0; i < item->child.Count(); i++)
-		{
-			if (item->child[i]->data)
-				s.Push(item->child[i]->data);
-
-			else
-			{
-
-			}
-				
 		}
 	}
 

@@ -1,14 +1,21 @@
 #include "Utilities.h"
+#include "TreeG.h"
 #include <stdio.h>
 
 int main(int argc, char** args){ 
 
-	float a = 5;
-	int b = 6;
+	TreeG<char> t('F');
 
-	float c = MIN(a, b);
-	printf("%f", c);
-	
+	nodeT<char>* b = t.Add('B');
+	nodeT<char>* g = t.Add('G');
+	t.Add('A', b);
+	nodeT<char>* d = t.Add('D', b);
+	t.Add('C', d);
+	t.Add('E', d);
+
+
+
+
 	getchar();
 
 }
