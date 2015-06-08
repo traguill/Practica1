@@ -98,7 +98,7 @@ class DynArray{
 			}
 			
 
-			for (unsigned int i = numElements; i > position + arr.numElements; i--)
+			for (unsigned int i = numElements; i > position; i--)
 			{
 				data[i+arr.numElements] = data[i];
 			}

@@ -55,32 +55,33 @@ public:
 
 	TEST_METHOD(InsertArray)
 	{
-		DynArray<int> array;
+		DynArray<char> array;
 
-		for (int i = 0; i < 6; ++i)
+		for (int i = 0; i < 8; ++i)
 		{
-			array.PushBack(i);
+			array.PushBack('A');
 		}
 
-		DynArray<int> array2;
+		DynArray<char> array2;
 
-		for (int i = 0; i < 4; ++i)
+		for (int i = 1; i < 4; ++i)
 		{
-			array2.PushBack(i);
+			array2.PushBack('B');
 		}
 
-		array.Insert(array2, 4);
+		array.Insert(array2, 1);
 
-		Assert::AreEqual((int)array[0], 0);
-		Assert::AreEqual((int)array[1], 1);
-		Assert::AreEqual((int)array[2], 2);
-		Assert::AreEqual((int)array[3], 3);
-		Assert::AreEqual((int)array[4], 0);
-		Assert::AreEqual((int)array[5], 1);
-		Assert::AreEqual((int)array[6], 2);
-		Assert::AreEqual((int)array[7], 3);
-		Assert::AreEqual((int)array[8], 4);
-		Assert::AreEqual((int)array[9], 5);
+		Assert::AreEqual(array[0], 'A');
+		Assert::AreEqual(array[1], 'B');
+		Assert::AreEqual(array[2], 'B');
+		Assert::AreEqual(array[3], 'B');
+		Assert::AreEqual(array[4], 'A');
+		Assert::AreEqual(array[5], 'A');
+		Assert::AreEqual(array[6], 'A');
+		Assert::AreEqual(array[7], 'A');
+		Assert::AreEqual(array[8], 'A');
+		Assert::AreEqual(array[9], 'A');
+		Assert::AreEqual(array[10], 'A');
 		
 
 	}
