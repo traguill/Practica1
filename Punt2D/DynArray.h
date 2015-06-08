@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include "Utilities.h"
 
 #define DYN_ARRAY_BLOCK_SIZE 16
 
@@ -85,6 +86,31 @@ class DynArray{
 			numElements++;
 			return true;
 		}
+
+		bool Insert(const DynArray<Type>& arr, unsigned int position)
+		{
+			if (position > numElements)
+				return false;
+
+			if (allocatedMemory <= numElements + arr.numElements)
+			{
+				Reallocate(numElements + arr.numElements + 1);
+			}
+			
+
+			for (unsigned int i = numElements; i > position + arr.numElements; i--)
+			{
+				data[i+arr.numElements] = data[i];
+			}
+
+			for (unsigned int i = position; i < position + arr.numElements; i++)
+			{
+				data[i + arr.numElements] = data[i];
+				data[i] = arr.data[i - position];
+				numElements++;
+			}
+			return true;
+		}
 		
 
 		Type& operator[](const unsigned int index){
@@ -99,7 +125,30 @@ class DynArray{
 			return data[index];
 		}
 
-	
+		int BubbleSort(){
+			int counter = 0;
+			bool finished = false;
+
+			while (!finished)
+			{
+				finished = true;
+
+				for (unsigned int i = 0; i < numElements - 2; i++)
+				{
+					counter++;
+
+					if (data[i] > data[i + 1])
+					{
+						swap(data[i], data[i + 1]);
+						finished = false;
+					}
+						
+				}
+			}
+
+
+			return counter;
+		}
 
 };
 

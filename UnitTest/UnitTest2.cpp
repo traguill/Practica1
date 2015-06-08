@@ -53,6 +53,38 @@ public:
 
 	}
 
+	TEST_METHOD(InsertArray)
+	{
+		DynArray<int> array;
+
+		for (int i = 0; i < 6; ++i)
+		{
+			array.PushBack(i);
+		}
+
+		DynArray<int> array2;
+
+		for (int i = 0; i < 4; ++i)
+		{
+			array2.PushBack(i);
+		}
+
+		array.Insert(array2, 4);
+
+		Assert::AreEqual((int)array[0], 0);
+		Assert::AreEqual((int)array[1], 1);
+		Assert::AreEqual((int)array[2], 2);
+		Assert::AreEqual((int)array[3], 3);
+		Assert::AreEqual((int)array[4], 0);
+		Assert::AreEqual((int)array[5], 1);
+		Assert::AreEqual((int)array[6], 2);
+		Assert::AreEqual((int)array[7], 3);
+		Assert::AreEqual((int)array[8], 4);
+		Assert::AreEqual((int)array[9], 5);
+		
+
+	}
+
 	
 
 	};

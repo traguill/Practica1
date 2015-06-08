@@ -30,11 +30,11 @@ public:
 	bool operator!=(const char* c) const;
 	bool operator!=(const String& s) const;
 
-	const String operator=(const char* c);
-	const String operator=(const String& s);
+	const String& operator=(const char* c);
+	const String& operator=(const String& s);
 
-	const String operator+=(const char* c);
-	const String operator+=(const String& s);
+	const String& operator+=(const char* c);
+	const String& operator+=(const String& s);
 
 	//Methods
 
@@ -45,10 +45,19 @@ public:
 	const char* GetString();
 
 	void Clear();
+
+	void Change(const char* src, const char* dst);
 	
 private:
 
 	void NewString(unsigned const int sizeMemory);
+
+public:
+	unsigned int QuickSearch(const char* c)const;
+
+	void Alloc(unsigned int memory);
+
+	void Replace(const char* src, const char* dst, unsigned int position);
 
 	
 

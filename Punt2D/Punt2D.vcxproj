@@ -78,7 +78,6 @@
     <ClInclude Include="Qeue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
-    <ClInclude Include="TreeG.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>

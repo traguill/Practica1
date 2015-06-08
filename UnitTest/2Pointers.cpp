@@ -44,5 +44,23 @@ namespace UnitTest
 			Assert::IsTrue(list.end == list.start && list.Count() == 0);
 		}
 
+		TEST_METHOD(OperatorSumEqual)
+		{
+			List2P<int> list;
+
+			list.Add(1);
+			list.Add(2);
+			list.Add(3);
+			
+			List2P<int> list2;
+			list2.Add(4);
+			list2.Add(5);
+			list2.Add(6);
+
+			list += list2;
+			Assert::AreEqual((int)list.Count(), 6);
+		}
+
+
 	};
 }

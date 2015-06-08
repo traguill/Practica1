@@ -116,7 +116,19 @@ public:
 		start = end = NULL;
 	}
 
+	const List2P<Type>& operator+= (const List2P<Type>& list)
+	{
+		node<Type>* item;
+		item = list.start;
 
+		while (item)
+		{	
+			Add(item->value);
+			item = item->next;
+		}
+
+		return *this;
+	}
 
 };
 

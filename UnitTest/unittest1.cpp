@@ -280,6 +280,30 @@ namespace UnitTest
 			Assert::IsTrue(s.Capacity() == 1);
 		}
 
+		TEST_METHOD(QuickSearch)
+		{
+			String s("hola mundomundo mundo");
+			unsigned int result_true = s.QuickSearch("mundo");
+			unsigned int result_false = s.QuickSearch("banana");
+			Assert::AreEqual((int)result_true, 3);
+			Assert::AreEqual((int)result_false, 0);
+		}
+
+		TEST_METHOD(Replace)
+		{
+			String s("hola mundomundo mundo");
+			s.Alloc(100);
+			s.Replace("hola", "mundo", 0);
+			Assert::AreEqual(s.GetString(), "mundo mundomundo mundo");
+		}
+
+		TEST_METHOD(Change)
+		{
+			String s("hola mundomundo mundo");
+			s.Change("mundo", "hola");
+			Assert::AreEqual(s.GetString(), "hola holahola hola");
+		}
+
 	};
 
 	TEST_CLASS(PointTemplate){
